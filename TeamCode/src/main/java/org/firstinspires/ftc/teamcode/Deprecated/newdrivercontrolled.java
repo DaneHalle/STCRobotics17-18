@@ -37,7 +37,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import java.lang.Math;
 
-import org.firstinspires.ftc.teamcode.Old.NewHardwareRegister;
+import org.firstinspires.ftc.teamcode.Old17.NewHardwareRegister;
 
 /**
  * This OpMode uses the common HardwareK9bot class to define the devices on the robot.

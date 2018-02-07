@@ -61,7 +61,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  
-package org.firstinspires.ftc.teamcode.Old;
+package org.firstinspires.ftc.teamcode.Old17;
 
 import android.app.Activity;
 import android.view.View;
@@ -73,11 +73,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
- * Same as AutoAlt2 (uses flipper) with a 10 second delay
+ * Same as auto except it uses the flipper
  */
 
 
-public class AutoAlt3 extends LinearOpMode {
+public class AutoAlt2 extends LinearOpMode {
 
     /* Declare OpMode members. */
     NewHardwareRegister robot = new NewHardwareRegister();   // Use a Pushbot's hardware
@@ -171,7 +171,6 @@ public class AutoAlt3 extends LinearOpMode {
          * forward is negative for autonomous mode
          */
 
-        sleep(10*1000);
 
         encoderDrive(DRIVE_SPEED, -40, -40, 15.0); // drive forward
         flipper(1, -1, 5.0); // shoot 1 ball

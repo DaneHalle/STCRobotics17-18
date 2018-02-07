@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Old.HardwareRegister;
+import org.firstinspires.ftc.teamcode.Old17.HardwareRegister;
 
 /**
  * This OpMode uses the common HardwareK9bot class to define the devices on the robot.

@@ -61,23 +61,49 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  
-package org.firstinspires.ftc.teamcode.Old;
-
-import android.app.Activity;
-import android.view.View;
-
-import com.qualcomm.ftcrobotcontroller.R;
+package org.firstinspires.ftc.teamcode.Old17;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import android.app.Activity;
+import android.view.View;
+import com.qualcomm.ftcrobotcontroller.R;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+
+import java.lang.Math;
 
 /**
- * Same as Auto but adds a ten sencond pause at the beginning
+ * This file illustrates the concept of driving a path based on encoder counts.
+ * It uses the common Pushbot hardware class to define the drive on the robot.
+ * The code is structured as a LinearOpMode
+ *
+ * The code REQUIRES that you DO have encoders on the wheels,
+ *   otherwise you would use: PushbotAutoDriveByTime;
+ *
+ *  This code ALSO requires that the drive Motors have been configured such that a positive
+ *  power command moves them forwards, and causes the encoders to count UP.
+ *
+ *   The desired path in this example is:
+ *   - Drive forward for 48 inches
+ *   - Spin right for 12 Inches
+ *   - Drive Backwards for 24 inches
+ *   - Stop and close the claw.
+ *
+ *  The code is written using a method called: encoderDrive(speed, leftInches, rightInches, timeoutS)
+ *  that performs the actual movement.
+ *  This methods assumes that each movement is relative to the last stopping place.
+ *  There are other ways to perform encoder based moves, but this method is probably the simplest.
+ *  This code uses the RUN_TO_POSITION mode to enable the Motor controllers to generate the run profile
+ *
+ * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
+ * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
 
-public class AutoAlt1 extends LinearOpMode {
+
+
+
+public class Auto extends LinearOpMode {
 
     /* Declare OpMode members. */
     NewHardwareRegister robot = new NewHardwareRegister();   // Use a Pushbot's hardware
@@ -170,8 +196,6 @@ public class AutoAlt1 extends LinearOpMode {
          * BEGIN DRIVING INSTRUCTIONS
          * forward is negative for autonomous mode
          */
-
-        sleep(10*1000);
 
         encoderDrive(1, -80, -80, 15);
         encoderDrive(DRIVE_SPEED, 20, 20, 15);

@@ -61,7 +61,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  
-package org.firstinspires.ftc.teamcode.Old;
+package org.firstinspires.ftc.teamcode.Old17;
 
 import android.app.Activity;
 import android.view.View;
@@ -73,11 +73,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
- * Same as auto except it uses the flipper
+ * Same as Auto but adds a ten sencond pause at the beginning
  */
 
 
-public class AutoAlt2 extends LinearOpMode {
+public class AutoAlt1 extends LinearOpMode {
 
     /* Declare OpMode members. */
     NewHardwareRegister robot = new NewHardwareRegister();   // Use a Pushbot's hardware
@@ -171,19 +171,11 @@ public class AutoAlt2 extends LinearOpMode {
          * forward is negative for autonomous mode
          */
 
+        sleep(10*1000);
 
-        encoderDrive(DRIVE_SPEED, -40, -40, 15.0); // drive forward
-        flipper(1, -1, 5.0); // shoot 1 ball
-        robot.sweeperMotor.setPower(0.7); // activate sweeper
-        sleep(2000); // pause
-        robot.sweeperMotor.setPower(0); // deactivate sweeper
-        flipper(1, -1, 5.0); // shoot 1 ball
-        encoderDrive(1.0, -40, -40, 15.0); // drive forward
-        encoderDrive(1.0, 20, 20, 15.0);
-        encoderDrive(1.0, -25, -25, 15.0);
-
-
-
+        encoderDrive(1, -80, -80, 15);
+        encoderDrive(DRIVE_SPEED, 20, 20, 15);
+        encoderDrive(1, -25, -25, 15);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

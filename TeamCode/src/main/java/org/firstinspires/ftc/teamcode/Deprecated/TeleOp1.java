@@ -34,7 +34,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.Old.HardwareRegister;
+import org.firstinspires.ftc.teamcode.Old17.HardwareRegister;
 
 /**
  * This file provides basic Telop driving for a Pushbot robot.
