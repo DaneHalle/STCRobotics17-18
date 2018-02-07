@@ -85,10 +85,11 @@ public class Auto_Mechanum_Red_Easy extends LinearOpMode {
         robot.flicker.setPosition(0);
 
         glyph(2.5, 1);
-        glyph(-.6, .65);
+        glyph(-.6, 1);
         doNothing();
         robot.rightExtend.setPosition(1);
         robot.leftExtend.setPosition(0);
+        glyph(1, .5);
 
         doNothing();
         robot.flicker.setPosition(1);
@@ -153,23 +154,29 @@ public class Auto_Mechanum_Red_Easy extends LinearOpMode {
     private void strafeLeft(double speed, double time) throws InterruptedException {
         double currentTime = getRuntime();
         do{
-            robot.frontLeft.setPower(-speed);
-            robot.frontRight.setPower(speed);
-            robot.backLeft.setPower(speed);
-            robot.backRight.setPower(-speed);
+            robot.backLeft.setPower(-speed);
+            robot.backRight.setPower(speed);
+            robot.frontLeft.setPower(speed);
+            robot.frontRight.setPower(-speed);
         }while(getRuntime()<=currentTime+time);
-        //encoderDrive(speed, -distance, distance, distance, -distance);
+            robot.backLeft.setPower(0);
+            robot.backRight.setPower(0);
+            robot.frontLeft.setPower(0);
+            robot.frontRight.setPower(0);
     }
 
     private void strafeRight(double speed, double distance) throws InterruptedException {
         double currentTime = getRuntime();
         do{
-            robot.frontLeft.setPower(speed);
-            robot.frontRight.setPower(-speed);
-            robot.backLeft.setPower(-speed);
-            robot.backRight.setPower(speed);
+            robot.backLeft.setPower(speed);
+            robot.backRight.setPower(-speed);
+            robot.frontLeft.setPower(-speed);
+            robot.frontRight.setPower(speed);
         }while(getRuntime()<=currentTime+distance);
-        //encoderDrive(speed, distance, -distance, -distance, distance);
+            robot.frontLeft.setPower(0);
+            robot.frontRight.setPower(0);
+            robot.backLeft.setPower(0);
+            robot.backRight.setPower(0);
     }
 
     public void glyph(double pow, double time) throws InterruptedException {
@@ -178,6 +185,16 @@ public class Auto_Mechanum_Red_Easy extends LinearOpMode {
             robot.extender.setPower(pow);
         }while(getRuntime()<=currentTime+time);
             robot.extender.setPower(0);
+    }
+
+    public void shimy(double pow, double time) throws InterruptedException {
+        double currentTime = getRuntime();
+        do{
+            strafeRight(pow, time/4);
+            go(pow, time/4);
+            strafeLeft(pow, time/4);
+            go(pow, time/4);
+        }while(getRuntime()<=currentTime+time);
     }
 
     private void encoderDrive(double speed, double leftInches, double rightInches,
