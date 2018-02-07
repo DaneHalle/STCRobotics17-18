@@ -85,9 +85,10 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
         robot.flicker.setPosition(0);
 
         glyph(2.5, 1);
-        glyph(-2.5, .8);
+        glyph(-.6, .65);
+        doNothing();
         robot.rightExtend.setPosition(1);
-        robot.leftExtend.setPosition(1);
+        robot.leftExtend.setPosition(0);
 
         doNothing();
         robot.flicker.setPosition(1);
@@ -180,6 +181,7 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
         do{
             robot.extender.setPower(pow);
         }while(getRuntime()<=currentTime+time);
+            robot.extender.setPower(0);
     }
 
     private void encoderDrive(double speed, double leftInches, double rightInches,
