@@ -84,6 +84,11 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
             robot.leftExtend.setPosition(1);
             robot.flicker.setPosition(0);
 
+            glyph(2.5, 1);
+            glyph(-2.5, .8);
+            robot.rightExtend.setPosition(1);
+            robot.leftExtend.setPosition(1);
+
             doNothing();
             robot.flicker.setPosition(1);
 
@@ -164,6 +169,13 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
             robot.backRight.setPower(speed);
         }while(getRuntime()<=currentTime+distance);
         //encoderDrive(speed, distance, -distance, -distance, distance);
+    }
+
+    public void glyph(double pow, double time) throws InterruptedException {
+        double currentTime = getRuntime();
+        do{
+            robot.extender.setPower(pow);
+        }while(getRuntime()<=currentTime+time);
     }
 
     private void encoderDrive(double speed, double leftInches, double rightInches,

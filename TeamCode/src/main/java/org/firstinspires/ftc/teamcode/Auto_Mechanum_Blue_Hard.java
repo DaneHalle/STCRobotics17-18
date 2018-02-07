@@ -84,6 +84,11 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
         robot.leftExtend.setPosition(1);
         robot.flicker.setPosition(0);
 
+        glyph(2.5, 1);
+        glyph(-2.5, .8);
+        robot.rightExtend.setPosition(1);
+        robot.leftExtend.setPosition(1);
+
         doNothing();
         robot.flicker.setPosition(1);
 
@@ -105,8 +110,8 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
             go(-.5,1);
         }
         doNothing();
-        goRight(.5,1);
-        go(.5,2);
+        pRight(.5,1);
+        go(.5,2.5);
     }
 
     /**
@@ -119,13 +124,13 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
         }
     }
 
-    private void goRight(double speed, double secs) {
+    private void pRight(double speed, double secs) {
         double currentTime = getRuntime();
         do{
-            robot.backLeft.setPower(-1*speed);
+            robot.backLeft.setPower(speed);
             robot.backRight.setPower(speed);
-            robot.frontLeft.setPower(4*speed);
-            robot.frontRight.setPower(-4*speed);
+            robot.frontLeft.setPower(-speed);
+            robot.frontRight.setPower(-speed);
         }while(getRuntime()<=currentTime+secs);
             robot.frontLeft.setPower(0);
             robot.frontRight.setPower(0);
@@ -168,6 +173,13 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
             robot.backRight.setPower(speed);
         }while(getRuntime()<=currentTime+distance);
         //encoderDrive(speed, distance, -distance, -distance, distance);
+    }
+
+    public void glyph(double pow, double time) throws InterruptedException {
+        double currentTime = getRuntime();
+        do{
+            robot.extender.setPower(pow);
+        }while(getRuntime()<=currentTime+time);
     }
 
     private void encoderDrive(double speed, double leftInches, double rightInches,
