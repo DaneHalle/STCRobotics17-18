@@ -31,8 +31,8 @@ public class New_Wheels extends LinearOpMode {
         robot.theClaw.setPosition(.25);
         robot.rightExtend.setPosition(1);
         robot.leftExtend.setPosition(1);
-        robot.ben.setPower(0);
         robot.flicker.setPosition(0);
+        robot.ben.setPower(0);
 
         // run until the end of the match (driver presses STOP)
         while(opModeIsActive()) {
@@ -97,7 +97,6 @@ public class New_Wheels extends LinearOpMode {
             if(gamepad1.left_stick_button) {
                 mult -= .1;
             }
-
 
             idle();
         }

@@ -24,8 +24,8 @@ public class Dual extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        double right = 0;
-        double left  = 0;
+        double right;
+        double left;
         double mult = 1.0;
 
         //sets initial position for servos
@@ -42,8 +42,8 @@ public class Dual extends LinearOpMode {
 
             //Wheels
             if(gamepad1.right_stick_y>0||gamepad1.right_stick_y<0||gamepad1.left_stick_y>0||gamepad1.left_stick_y<0){
-                right = -(gamepad1.right_stick_y) * mult;
-                left = -(gamepad1.left_stick_y) * mult;
+                right = -(gamepad1.right_stick_y)*mult;
+                left = -(gamepad1.left_stick_y)*mult;
                 robot.frontRight.setPower(right*2);
                 robot.backRight.setPower(right);
                 robot.frontLeft.setPower(left*2);

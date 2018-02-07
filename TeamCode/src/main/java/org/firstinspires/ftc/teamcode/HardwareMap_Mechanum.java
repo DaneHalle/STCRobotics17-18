@@ -29,8 +29,6 @@ public class HardwareMap_Mechanum
     public CRServo ben              = null;
     public Servo flicker            = null;
 
-
-
     /* Local OpMode members. */
     com.qualcomm.robotcore.hardware.HardwareMap hwMap  = null;
     private ElapsedTime period  = new ElapsedTime();
@@ -55,8 +53,6 @@ public class HardwareMap_Mechanum
 
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         frontLeft.setDirection(DcMotor.Direction.REVERSE);
-
-
 
         // Set all motors to zero power
         frontLeft.setPower(0);
@@ -89,7 +85,6 @@ public class HardwareMap_Mechanum
         leftExtend.setPosition(.25);
         rightExtend.setPosition(.25);
         ben.setPower(0);
-
     }
 
     /***
@@ -102,7 +97,6 @@ public class HardwareMap_Mechanum
      * @throws InterruptedException
      */
     public void waitForTick(long periodMs)  throws InterruptedException {
-
         long  remaining = periodMs - (long)period.milliseconds();
 
         // sleep for the remaining portion of the regular cycle period.
