@@ -73,7 +73,7 @@ public class Auto_Mechanum_Blue extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        try {
+
             robot.init(hardwareMap);
 
 
@@ -89,15 +89,16 @@ public class Auto_Mechanum_Blue extends LinearOpMode {
 
             robot.rightExtend.setPosition(0);
             robot.leftExtend.setPosition(1);
-            //robot.flicker.setPosition(.45);
+            robot.flicker.setPosition(0);
+
 
 
             //doNothing();
 
-            //get into position
-            go(.5, 2);
-
             doNothing();
+            robot.flicker.setPosition(1);
+
+
 
             //detect ball color and flick correct ball
             telemetry.addData("Red", robot.colorSensor.red());
@@ -105,31 +106,31 @@ public class Auto_Mechanum_Blue extends LinearOpMode {
             telemetry.update();
 
 
-
-            if (robot.colorSensor.red() > robot.colorSensor.blue()) {
-                robot.flicker.setPosition(1);
-            } else {
-                robot.flicker.setPosition(0);
-            }
             doNothing();
+            if (robot.colorSensor.red() > robot.colorSensor.blue()) {
+                go(-.5,1);
+                robot.flicker.setPosition(0);
+                doNothing();
+                go(.5,3.5);
+            } else {
+                go(.5,1);
+                robot.flicker.setPosition(0);
+                doNothing();
+                go(.5,2.5);
+
+            }
 
 
 
 
-            //goRight(-.5,3);
 
-            //Stop and drive into wall
 
-            robot.frontLeft.setPower(0);
-            robot.frontRight.setPower(0);
-            robot.backLeft.setPower(0);
-            robot.backRight.setPower(0);
-            go(.5, 1);
-        }
-        catch (NullPointerException e) {
-            telemetry.addData("FUCK", 9);
-            telemetry.update();
-        }
+
+
+
+
+
+
 
     }
 
@@ -176,14 +177,14 @@ public class Auto_Mechanum_Blue extends LinearOpMode {
 
 
 
-    private void strafeLeft(double speed, double distance) throws InterruptedException {
+    private void strafeLeft(double speed, double time) throws InterruptedException {
         double currentTime = getRuntime();
         do{
             robot.frontLeft.setPower(-speed);
             robot.frontRight.setPower(speed);
             robot.backLeft.setPower(speed);
             robot.backRight.setPower(-speed);
-        }while(getRuntime()<=currentTime+distance);
+        }while(getRuntime()<=currentTime+time);
         //encoderDrive(speed, -distance, distance, distance, -distance);
 
     }

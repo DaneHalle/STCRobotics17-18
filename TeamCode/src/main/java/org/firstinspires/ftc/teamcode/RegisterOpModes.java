@@ -20,8 +20,9 @@ public class RegisterOpModes {
         //manager.register("Driver Controlled", Driver_Mechanum_TankMode.class);
         //manager.register("Single Driver", Single.class);
         manager.register("Dual Driver", Dual.class);
+        manager.register("Test Color",TestColor.class);
         //manager.register("test",TestWheels.class);
-        manager.register("Wheels", New_Wheels.class);
+        //manager.register("Wheels", New_Wheels.class);
 
         //manager.register("color sensor", SensorMRColor.class);
 
