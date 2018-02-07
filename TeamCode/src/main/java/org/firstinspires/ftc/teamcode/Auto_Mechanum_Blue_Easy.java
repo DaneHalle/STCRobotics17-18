@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class Auto_Mechanum_Red extends LinearOpMode {
+public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
 
     /**
      * Make some objects
@@ -68,72 +68,43 @@ public class Auto_Mechanum_Red extends LinearOpMode {
     static double COUNTS_PER_INCH = 28.64834619782014;
     static double DRIVE_SPEED = 0.4;
 
-
-
-
     @Override
     public void runOpMode() throws InterruptedException {
 
-        robot.init(hardwareMap);
+            robot.init(hardwareMap);
 
+            robot.colorSensor.enableLed(true);
+            // robot.botSense.enableLed(true);
 
-        robot.colorSensor.enableLed(true);
-        // robot.botSense.enableLed(true);
+            // Wait for the game to start (driver presses PLAY)
+            waitForStart();
+            runtime.reset();
 
-
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-        runtime.reset();
-
-
-
-        robot.rightExtend.setPosition(0);
-        robot.leftExtend.setPosition(1);
-        robot.flicker.setPosition(0);
-
-
-
-        //doNothing();
-
-        doNothing();
-        robot.flicker.setPosition(1);
-
-
-
-        //detect ball color and flick correct ball
-        telemetry.addData("Red", robot.colorSensor.red());
-        telemetry.addData("Blue", robot.colorSensor.blue());
-        telemetry.update();
-
-
-        doNothing();
-        if (robot.colorSensor.red() < robot.colorSensor.blue()) {
-            go(-.5,1);
+            robot.rightExtend.setPosition(0);
+            robot.leftExtend.setPosition(1);
             robot.flicker.setPosition(0);
+
             doNothing();
-            go(.5,3.5);
-        } else {
-            go(.5,1);
-            robot.flicker.setPosition(0);
+            robot.flicker.setPosition(1);
+
+            //detect ball color and flick correct ball
+            telemetry.addData("Red", robot.colorSensor.red());
+            telemetry.addData("Blue", robot.colorSensor.blue());
+            telemetry.update();
+
             doNothing();
-            go(.5,2.5);
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if (robot.colorSensor.red() > robot.colorSensor.blue()) {
+                go(-.5,1);
+                robot.flicker.setPosition(0);
+                doNothing();
+                go(.5,3.5);
+            } else {
+                go(.5,1);
+                robot.flicker.setPosition(0);
+                doNothing();
+                go(.5,2.5);
+            }
     }
-
 
     /**
      * Driving helper methods
@@ -153,11 +124,10 @@ public class Auto_Mechanum_Red extends LinearOpMode {
             robot.frontLeft.setPower(4*speed);
             robot.frontRight.setPower(-4*speed);
         }while(getRuntime()<=currentTime+secs);
-
-        robot.frontLeft.setPower(0);
-        robot.frontRight.setPower(0);
-        robot.backLeft.setPower(0);
-        robot.backRight.setPower(0);
+            robot.frontLeft.setPower(0);
+            robot.frontRight.setPower(0);
+            robot.backLeft.setPower(0);
+            robot.backRight.setPower(0);
     }
 
     private void go(double speed, double secs) {
@@ -168,14 +138,11 @@ public class Auto_Mechanum_Red extends LinearOpMode {
             robot.backLeft.setPower(speed);
             robot.backRight.setPower(speed);
         }while(getRuntime()<=currentTime+secs);
-        robot.frontLeft.setPower(0);
-        robot.frontRight.setPower(0);
-        robot.backLeft.setPower(0);
-        robot.backRight.setPower(0);
-
+            robot.frontLeft.setPower(0);
+            robot.frontRight.setPower(0);
+            robot.backLeft.setPower(0);
+            robot.backRight.setPower(0);
     }
-
-
 
     private void strafeLeft(double speed, double time) throws InterruptedException {
         double currentTime = getRuntime();
@@ -186,7 +153,6 @@ public class Auto_Mechanum_Red extends LinearOpMode {
             robot.backRight.setPower(-speed);
         }while(getRuntime()<=currentTime+time);
         //encoderDrive(speed, -distance, distance, distance, -distance);
-
     }
 
     private void strafeRight(double speed, double distance) throws InterruptedException {
@@ -200,26 +166,20 @@ public class Auto_Mechanum_Red extends LinearOpMode {
         //encoderDrive(speed, distance, -distance, -distance, distance);
     }
 
-
-    private void encoderDrive(double speed,
-                              double leftInches, double rightInches, double bLeftInches, double bRightInches) throws InterruptedException {
+    private void encoderDrive(double speed, double leftInches, double rightInches,
+                              double bLeftInches, double bRightInches) throws InterruptedException {
         int newFrontLeftTarget=0;
         int newFrontRightTarget=0;
         int newBackLeftTarget=0;
         int newBackRightTarget=0;
 
-        // flip motors
-
-
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
-
             // Determine new target position, and pass to motor controller
             newFrontLeftTarget = robot.frontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
             newFrontRightTarget = robot.frontRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
             newBackLeftTarget = robot.backLeft.getCurrentPosition() + (int)(bLeftInches * COUNTS_PER_INCH);
             newBackRightTarget = robot.backRight.getCurrentPosition() + (int)(bRightInches * COUNTS_PER_INCH);
-
 
             robot.frontRight.setTargetPosition(newFrontRightTarget);
             robot.frontLeft.setTargetPosition(newFrontLeftTarget);
@@ -243,8 +203,8 @@ public class Auto_Mechanum_Red extends LinearOpMode {
                     (robot.backRight.isBusy() && robot.backLeft.isBusy()
                             && robot.frontLeft.isBusy() && robot.frontRight.isBusy())) {
                 // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d", robot.backRight.getCurrentPosition(),  newBackRightTarget);
-
+                telemetry.addData("Path1",  "Running to %7d :%7d",
+                        robot.backRight.getCurrentPosition(),  newBackRightTarget);
                 telemetry.update();
 
                 // Allow time for other processes to run.
@@ -257,7 +217,6 @@ public class Auto_Mechanum_Red extends LinearOpMode {
             robot.backRight.setPower(0);
             robot.backLeft.setPower(0);
 
-
             robot.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -265,12 +224,5 @@ public class Auto_Mechanum_Red extends LinearOpMode {
 
             sleep(250);
         }
-
-
-
     }
-
-
-
-
 }

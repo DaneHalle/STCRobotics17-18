@@ -21,7 +21,6 @@ public class HardwareMap_Mechanum
     public DcMotor  extender        = null;
     public DcMotor  moveArm         = null;
 
-
     public ColorSensor colorSensor  = null; //this is the ball sensor
 
     public Servo leftExtend         = null;
@@ -75,35 +74,21 @@ public class HardwareMap_Mechanum
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-
-        //initialize color sensors
+        //initialize color sensor
         colorSensor = hwMap.colorSensor.get("colorSensor");
         colorSensor.enableLed(false);
 
-
         // servos boy
         theClaw = hwMap.servo.get("theClaw");
-        theClaw.setPosition(0);
-
         flicker = hwMap.servo.get("flicker");
-        flicker.setPosition(0);
-
         leftExtend = hwMap.servo.get("leftExtend");
         rightExtend = hwMap.servo.get("rightExtend");
         ben = hwMap.crservo.get("ben");
+        theClaw.setPosition(0);
+        flicker.setPosition(0);
         leftExtend.setPosition(.25);
         rightExtend.setPosition(.25);
         ben.setPower(0);
-
-
-        /*
-        com.qualcomm.robotcore.hardware.I2cAddr color1Addr = new com.qualcomm.robotcore.hardware.I2cAddr(0x3c);
-        colorSensor.setI2cAddress(color1Addr);
-
-        com.qualcomm.robotcore.hardware.I2cAddr color2Addr = new com.qualcomm.robotcore.hardware.I2cAddr(0x3a);
-        botSense.setI2cAddress(color2Addr);*/
-
-
 
     }
 
