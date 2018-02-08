@@ -104,14 +104,14 @@ public class Auto_Blue_Straight extends LinearOpMode {
                 go(-.5,1);
             }
             go(.5, 1.5);
-            turn(.5,1);
+            turn(.5,.75);
             go(.5,1);
-            turn(-.5,1.5);
+            turn(-.5,1.75);
             go(.5, 1.5);
             robot.rightExtend.setPosition(0);
             robot.leftExtend.setPosition(1);
             glyph(.6, 1);
-            shimmy(.5,4);
+            go(.25, .5);
     }
 
     /**
