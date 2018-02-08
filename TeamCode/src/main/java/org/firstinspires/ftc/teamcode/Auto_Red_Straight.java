@@ -112,7 +112,7 @@ public class Auto_Red_Straight extends LinearOpMode {
         robot.leftExtend.setPosition(1);
         glyph(.6, 1);
         go(.25, .5);
-        
+
     }
 
     /**
