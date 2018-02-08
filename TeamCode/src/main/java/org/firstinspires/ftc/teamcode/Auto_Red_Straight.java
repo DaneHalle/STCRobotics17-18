@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
+public class Auto_Red_Straight extends LinearOpMode {
 
     /**
      * Make some objects
@@ -80,6 +80,10 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        robot.rightExtend.setPosition(0);
+        robot.leftExtend.setPosition(1);
+        robot.flicker.setPosition(0);
+
         glyph(2.5, 1);
         glyph(-1, 1.5);
         doNothing();
@@ -94,7 +98,7 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
         telemetry.update();
 
         doNothing();
-        if (robot.colorSensor.red() > robot.colorSensor.blue()) {
+        if (robot.colorSensor.red() < robot.colorSensor.blue()) {
             go(-.5,1);
             robot.flicker.setPosition(0);
             doNothing();
@@ -105,10 +109,11 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
             doNothing();
             go(-.5,1);
         }
-        doNothing();
-        go(.5, 1.25);
-        strafeRight(1, 1);
-        go(.5,1.25);
+        go(.5, 1.5);
+        turn(-.5,1);
+        go(.5,1);
+        turn(.5,1.5);
+        go(.5, 1.5);
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
         glyph(.6, 1);
@@ -128,10 +133,10 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
     private void turn(double speed, double secs) {
         double currentTime = getRuntime();
         do{
-            robot.backLeft.setPower(-1*speed);
-            robot.backRight.setPower(speed);
-            robot.frontLeft.setPower(4*speed);
-            robot.frontRight.setPower(-4*speed);
+            robot.backLeft.setPower(speed);
+            robot.backRight.setPower(-speed);
+            robot.frontLeft.setPower(speed);
+            robot.frontRight.setPower(-speed);
         }while(getRuntime()<=currentTime+secs);
             robot.frontLeft.setPower(0);
             robot.frontRight.setPower(0);

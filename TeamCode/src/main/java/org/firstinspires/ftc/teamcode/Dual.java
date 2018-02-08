@@ -30,7 +30,7 @@ public class Dual extends LinearOpMode {
 
         //sets initial position for servos
         robot.theClaw.setPosition(.25);
-        robot.rightExtend.setPosition(1);
+        robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
         robot.ben.setPower(0);
         robot.flicker.setPosition(0);
@@ -134,11 +134,11 @@ public class Dual extends LinearOpMode {
 
             //Paddles on Ben's shitty Scissor Arm
             if (gamepad2.left_bumper) {
-                robot.leftExtend.setPosition(1);
-                robot.rightExtend.setPosition(0);
-            } else {
                 robot.leftExtend.setPosition(0);
                 robot.rightExtend.setPosition(1);
+            } else {
+                robot.leftExtend.setPosition(1);
+                robot.rightExtend.setPosition(0);
             }
 
             //height control of the Linear gear arm

@@ -83,7 +83,7 @@ public class HardwareMap_Mechanum
         theClaw.setPosition(0);
         flicker.setPosition(0);
         leftExtend.setPosition(.25);
-        rightExtend.setPosition(.25);
+        rightExtend.setPosition(.75);
         ben.setPower(0);
     }
 
@@ -106,5 +106,4 @@ public class HardwareMap_Mechanum
         // Reset the cycle clock for the next pass.
         period.reset();
     }
-
 }

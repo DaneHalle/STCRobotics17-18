@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
+public class Auto_Blue_Straight extends LinearOpMode {
 
     /**
      * Make some objects
@@ -135,10 +135,10 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
     private void turn(double speed, double secs) {
         double currentTime = getRuntime();
         do{
-            robot.backLeft.setPower(-1*speed);
-            robot.backRight.setPower(speed);
-            robot.frontLeft.setPower(4*speed);
-            robot.frontRight.setPower(-4*speed);
+            robot.backLeft.setPower(speed);
+            robot.backRight.setPower(-speed);
+            robot.frontLeft.setPower(speed);
+            robot.frontRight.setPower(-speed);
         }while(getRuntime()<=currentTime+secs);
             robot.frontLeft.setPower(0);
             robot.frontRight.setPower(0);
