@@ -53,7 +53,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @Autonomous
-
 public class Auto_Red_Angle extends LinearOpMode {
 
     /**
@@ -68,7 +67,6 @@ public class Auto_Red_Angle extends LinearOpMode {
         robot.init(hardwareMap);
 
         robot.colorSensor.enableLed(true);
-        // robot.botSense.enableLed(true);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

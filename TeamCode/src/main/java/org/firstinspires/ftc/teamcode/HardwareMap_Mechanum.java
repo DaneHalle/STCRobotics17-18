@@ -26,8 +26,8 @@ public class HardwareMap_Mechanum
     public Servo leftExtend         = null;
     public Servo rightExtend        = null;
     public Servo theClaw            = null;
-    public CRServo ben              = null;
     public Servo flicker            = null;
+    public CRServo ben              = null;
 
     /* Local OpMode members. */
     com.qualcomm.robotcore.hardware.HardwareMap hwMap  = null;

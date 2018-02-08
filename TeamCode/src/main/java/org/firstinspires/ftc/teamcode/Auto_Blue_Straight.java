@@ -53,7 +53,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @Autonomous
-
 public class Auto_Blue_Straight extends LinearOpMode {
 
     /**
@@ -68,7 +67,6 @@ public class Auto_Blue_Straight extends LinearOpMode {
             robot.init(hardwareMap);
 
             robot.colorSensor.enableLed(true);
-            // robot.botSense.enableLed(true);
 
             // Wait for the game to start (driver presses PLAY)
             waitForStart();
@@ -111,7 +109,7 @@ public class Auto_Blue_Straight extends LinearOpMode {
             robot.rightExtend.setPosition(0);
             robot.leftExtend.setPosition(1);
             glyph(.6, 1);
-            go(.25, .5);
+            go(-.25, .5);
     }
 
     /**
