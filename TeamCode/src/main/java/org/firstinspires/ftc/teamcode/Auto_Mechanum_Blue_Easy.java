@@ -85,7 +85,7 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
             robot.flicker.setPosition(0);
 
             glyph(2.5, 1);
-            glyph(-.6, 1);
+            glyph(-1, 1);
             doNothing();
             robot.rightExtend.setPosition(1);
             robot.leftExtend.setPosition(0);

@@ -80,18 +80,12 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        robot.rightExtend.setPosition(0);
-        robot.leftExtend.setPosition(1);
-        robot.flicker.setPosition(0);
-
         glyph(2.5, 1);
-        glyph(-.6, 1);
+        glyph(-1, 1.5);
         doNothing();
         robot.rightExtend.setPosition(1);
         robot.leftExtend.setPosition(0);
-        glyph(1, .5);
-
-        doNothing();
+        glyph(1, 1);
         robot.flicker.setPosition(1);
 
         //detect ball color and flick correct ball
@@ -112,8 +106,9 @@ public class Auto_Mechanum_Blue_Hard extends LinearOpMode {
             go(-.5,1);
         }
         doNothing();
-        strafeRight(.8,1);
-        go(.5,2.5);
+        go(.5, 1.25);
+        strafeRight(1, 1);
+        go(.5,1.25);
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
         glyph(.6, 1);
