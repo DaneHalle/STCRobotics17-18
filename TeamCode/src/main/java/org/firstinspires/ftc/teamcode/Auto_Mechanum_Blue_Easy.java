@@ -85,13 +85,11 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
             robot.flicker.setPosition(0);
 
             glyph(2.5, 1);
-            glyph(-1, 1);
+            glyph(-1, 1.5);
             doNothing();
             robot.rightExtend.setPosition(1);
             robot.leftExtend.setPosition(0);
-            glyph(1, .5);
-
-            doNothing();
+            glyph(1, 1);
             robot.flicker.setPosition(1);
 
             //detect ball color and flick correct ball
@@ -104,13 +102,22 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
                 go(-.5,1);
                 robot.flicker.setPosition(0);
                 doNothing();
-                go(.5,3.5);
+                go(.5,1);
             } else {
                 go(.5,1);
                 robot.flicker.setPosition(0);
                 doNothing();
-                go(.5,2.5);
+                go(-.5,1);
             }
+            go(.5, 1.5);
+            turn(.5,1);
+            go(.5,1);
+            turn(-.5,1.5);
+            go(.5, 1.5);
+            robot.rightExtend.setPosition(0);
+            robot.leftExtend.setPosition(1);
+            glyph(.6, 1);
+            shimy(.5,4);
 
 
     }
@@ -120,12 +127,12 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
      */
     private void doNothing() {
         final double x = getRuntime();
-        while (getRuntime()<=x+2) {
+        while (getRuntime()<=x+1) {
             //do nothing
         }
     }
 
-    private void goRight(double speed, double secs) {
+    private void turn(double speed, double secs) {
         double currentTime = getRuntime();
         do{
             robot.backLeft.setPower(-1*speed);
@@ -197,65 +204,5 @@ public class Auto_Mechanum_Blue_Easy extends LinearOpMode {
             strafeLeft(pow, time/4);
             go(pow, time/4);
         }while(getRuntime()<=currentTime+time);
-    }
-
-    private void encoderDrive(double speed, double leftInches, double rightInches,
-                              double bLeftInches, double bRightInches) throws InterruptedException {
-        int newFrontLeftTarget=0;
-        int newFrontRightTarget=0;
-        int newBackLeftTarget=0;
-        int newBackRightTarget=0;
-
-        // Ensure that the opmode is still active
-        if (opModeIsActive()) {
-            // Determine new target position, and pass to motor controller
-            newFrontLeftTarget = robot.frontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newFrontRightTarget = robot.frontRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            newBackLeftTarget = robot.backLeft.getCurrentPosition() + (int)(bLeftInches * COUNTS_PER_INCH);
-            newBackRightTarget = robot.backRight.getCurrentPosition() + (int)(bRightInches * COUNTS_PER_INCH);
-
-            robot.frontRight.setTargetPosition(newFrontRightTarget);
-            robot.frontLeft.setTargetPosition(newFrontLeftTarget);
-            robot.backRight.setTargetPosition(newBackRightTarget);
-            robot.backLeft.setTargetPosition(newBackLeftTarget);
-
-            // Turn On RUN_TO_POSITION
-            robot.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            // reset the timeout time and start motion.
-            runtime.reset();
-            robot.frontLeft.setPower(Math.abs(speed));
-            robot.frontRight.setPower(Math.abs(speed));
-            robot.backLeft.setPower(Math.abs(speed));
-            robot.backRight.setPower(Math.abs(speed));
-
-            // keep looping while we are still active, and there is time left, and both motors are running.
-            while (opModeIsActive() &&
-                    (robot.backRight.isBusy() && robot.backLeft.isBusy()
-                            && robot.frontLeft.isBusy() && robot.frontRight.isBusy())) {
-                // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d",
-                        robot.backRight.getCurrentPosition(),  newBackRightTarget);
-                telemetry.update();
-
-                // Allow time for other processes to run.
-                idle();
-            }
-
-            // Stop all motion;
-            robot.frontRight.setPower(0);
-            robot.frontLeft.setPower(0);
-            robot.backRight.setPower(0);
-            robot.backLeft.setPower(0);
-
-            robot.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            sleep(250);
-        }
     }
 }
