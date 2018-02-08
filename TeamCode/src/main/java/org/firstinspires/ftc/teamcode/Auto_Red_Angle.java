@@ -62,12 +62,6 @@ public class Auto_Red_Angle extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     HardwareMap_Mechanum robot = new HardwareMap_Mechanum();
 
-    /**
-     * Make some variables
-     */
-    static double COUNTS_PER_INCH = 28.64834619782014;
-    static double DRIVE_SPEED = 0.4;
-
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -86,7 +80,7 @@ public class Auto_Red_Angle extends LinearOpMode {
 
         glyph(2.5, 1);
         glyph(-1, 1.5);
-        doNothing();
+        hold();
         robot.rightExtend.setPosition(1);
         robot.leftExtend.setPosition(0);
         glyph(1, 1);
@@ -101,15 +95,14 @@ public class Auto_Red_Angle extends LinearOpMode {
         if (robot.colorSensor.red() < robot.colorSensor.blue()) {
             go(-.5,1);
             robot.flicker.setPosition(0);
-            doNothing();
+            hold();
             go(.5,1);
         } else {
             go(.5,1);
             robot.flicker.setPosition(0);
-            doNothing();
+            hold();
             go(-.5,1);
         }
-        doNothing();
         go(.5, 1.25);
         strafeLeft(1, .9);
         go(.5,1.25);
@@ -125,8 +118,15 @@ public class Auto_Red_Angle extends LinearOpMode {
      */
     private void doNothing() {
         final double x = getRuntime();
-        while (getRuntime()<=x+1) {
+        while (getRuntime()<=x+2) {
             //do nothing
+        }
+    }
+
+    private void hold() {
+        final double x=getRuntime()+.5;
+        while(getRuntime()<=x){
+            //hold
         }
     }
 
@@ -186,7 +186,7 @@ public class Auto_Red_Angle extends LinearOpMode {
             robot.backRight.setPower(0);
     }
 
-    public void glyph(double pow, double time) throws InterruptedException {
+    private void glyph(double pow, double time) throws InterruptedException {
         double currentTime = getRuntime();
         do{
             robot.extender.setPower(pow);
@@ -194,7 +194,7 @@ public class Auto_Red_Angle extends LinearOpMode {
             robot.extender.setPower(0);
     }
 
-    public void shimy(double pow, double time) throws InterruptedException {
+    private void shimy(double pow, double time) throws InterruptedException {
         double currentTime = getRuntime();
         do{
             strafeRight(pow, time/4);
