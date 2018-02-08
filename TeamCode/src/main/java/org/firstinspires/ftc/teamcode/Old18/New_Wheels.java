@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Old18;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -6,12 +6,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.lang.Math;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.*;
+
 @TeleOp(name="Template: Linear OpMode", group="Linear Opmode")  // @Autonomous(...) is the other common choice
 @Disabled
 public class New_Wheels extends LinearOpMode {
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
-    HardwareMap_Mechanum robot = new HardwareMap_Mechanum();
+    org.firstinspires.ftc.teamcode.HardwareMap_Mechanum robot = new org.firstinspires.ftc.teamcode.HardwareMap_Mechanum();
 
     @Override
     public void runOpMode() throws InterruptedException {
