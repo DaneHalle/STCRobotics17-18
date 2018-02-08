@@ -64,52 +64,52 @@ public class Auto_Blue_Straight extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-            robot.init(hardwareMap);
+        robot.init(hardwareMap);
 
-            robot.colorSensor.enableLed(true);
+        robot.colorSensor.enableLed(true);
 
-            // Wait for the game to start (driver presses PLAY)
-            waitForStart();
-            runtime.reset();
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+        runtime.reset();
 
-            robot.rightExtend.setPosition(0);
-            robot.leftExtend.setPosition(1);
+        robot.rightExtend.setPosition(0);
+        robot.leftExtend.setPosition(1);
+        robot.flicker.setPosition(0);
+
+        glyph(2.5, 1);
+        glyph(-1, 1.5);
+        hold();
+        robot.rightExtend.setPosition(1);
+        robot.leftExtend.setPosition(0);
+        glyph(1, 1);
+        robot.flicker.setPosition(1);
+
+        //detect ball color and flick correct ball
+        telemetry.addData("Red", robot.colorSensor.red());
+        telemetry.addData("Blue", robot.colorSensor.blue());
+        telemetry.update();
+
+        doNothing();
+        if (robot.colorSensor.red() > robot.colorSensor.blue()) {
+            go(-.5, 1);
             robot.flicker.setPosition(0);
-
-            glyph(2.5, 1);
-            glyph(-1, 1.5);
             hold();
-            robot.rightExtend.setPosition(1);
-            robot.leftExtend.setPosition(0);
-            glyph(1, 1);
-            robot.flicker.setPosition(1);
-
-            //detect ball color and flick correct ball
-            telemetry.addData("Red", robot.colorSensor.red());
-            telemetry.addData("Blue", robot.colorSensor.blue());
-            telemetry.update();
-
-            doNothing();
-            if (robot.colorSensor.red() > robot.colorSensor.blue()) {
-                go(-.5,1);
-                robot.flicker.setPosition(0);
-                hold();
-                go(.5,1);
-            } else {
-                go(.5,1);
-                robot.flicker.setPosition(0);
-                hold();
-                go(-.5,1);
-            }
-            go(.5, 1.5);
-            turn(.5,.75);
-            go(.5,1);
-            turn(-.5,1.75);
-            go(.5, 1.5);
-            robot.rightExtend.setPosition(0);
-            robot.leftExtend.setPosition(1);
-            glyph(.6, 1);
-            go(-.25, .5);
+            go(.5, 1);
+        } else {
+            go(.5, 1);
+            robot.flicker.setPosition(0);
+            hold();
+            go(-.5, 1);
+        }
+        go(.5, 1.5);
+        turn(.5, .75);
+        go(.5, 1);
+        turn(-.5, 1.75);
+        go(.5, 1.5);
+        robot.rightExtend.setPosition(0);
+        robot.leftExtend.setPosition(1);
+        glyph(.6, 1);
+        go(-.25, .5);
     }
 
     /**

@@ -101,7 +101,6 @@ public class Auto_Blue_Angle extends LinearOpMode {
             hold();
             go(-.5,1);
         }
-        hold();
         go(.5, 1.25);
         strafeRight(1, 1);
         go(.5,1.25);

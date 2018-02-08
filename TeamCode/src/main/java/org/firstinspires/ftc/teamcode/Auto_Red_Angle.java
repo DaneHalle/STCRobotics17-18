@@ -108,7 +108,6 @@ public class Auto_Red_Angle extends LinearOpMode {
         robot.leftExtend.setPosition(1);
         glyph(.6, 1);
         shimmy(.5,4);
-
     }
 
     /**
