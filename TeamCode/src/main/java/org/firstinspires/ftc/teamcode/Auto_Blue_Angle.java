@@ -110,7 +110,7 @@ public class Auto_Blue_Angle extends LinearOpMode {
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
         glyph(.6, 1);
-        shimy(.5,4);
+        shimmy(.5,4);
     }
 
     /**
@@ -194,7 +194,7 @@ public class Auto_Blue_Angle extends LinearOpMode {
             robot.extender.setPower(0);
     }
 
-    private void shimy(double pow, double time) throws InterruptedException {
+    private void shimmy(double pow, double time) throws InterruptedException {
         double currentTime = getRuntime();
         do{
             strafeRight(pow, time/4);
