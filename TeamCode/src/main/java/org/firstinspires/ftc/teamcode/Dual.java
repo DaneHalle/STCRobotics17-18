@@ -113,7 +113,7 @@ public class Dual extends LinearOpMode {
             if (gamepad2.left_stick_y > 0 || gamepad2.left_stick_y < 0) {
                 robot.armMotor.setPower(gamepad2.left_stick_y);
             } else {
-                robot.armMotor.setPower(0);
+                robot.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             }
 
             //The claw o' Death
