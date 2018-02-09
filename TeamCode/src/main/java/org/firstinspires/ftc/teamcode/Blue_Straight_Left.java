@@ -51,7 +51,10 @@ public class Blue_Straight_Left extends LinearOpMode {
 
     @Override
     public void runOpMode()  {
+        run();
+    }
 
+    public void run(){
         robot.init(hardwareMap);
 
         robot.colorSensor.enableLed(true);

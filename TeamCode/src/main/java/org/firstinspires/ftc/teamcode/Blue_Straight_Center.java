@@ -49,7 +49,10 @@ public class Blue_Straight_Center extends LinearOpMode {
 
     @Override
     public void runOpMode()  {
+        run();
+    }
 
+    public void run(){
         robot.init(hardwareMap);
 
         robot.colorSensor.enableLed(true);
@@ -95,7 +98,6 @@ public class Blue_Straight_Center extends LinearOpMode {
         robot.leftExtend.setPosition(1);
         glyph(.6, 1);
         go(-.25, .5);
-
     }
 
     /**
