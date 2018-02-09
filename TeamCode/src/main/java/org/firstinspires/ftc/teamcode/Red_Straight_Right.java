@@ -55,7 +55,6 @@ public class Red_Straight_Right extends LinearOpMode {
         robot.colorSensor.enableLed(true);
 
         // Wait for the game to start (driver presses PLAY)
-        waitForStart();
         runtime.reset();
 
         robot.rightExtend.setPosition(0);

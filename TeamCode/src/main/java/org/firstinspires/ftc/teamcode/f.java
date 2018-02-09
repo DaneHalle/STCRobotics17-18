@@ -1,9 +1,8 @@
-
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opmode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -15,14 +14,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.firstinspires.ftc.robotcore.external.navigation.VuMarkInstanceId;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.Blue_Straight_Left;
+import org.firstinspires.ftc.teamcode.HardwareMap_Mechanum;
 
-@Autonomous(name = "Red Angle", group = "Vuforia")
-@Disabled
-public class Key_Red_Angle extends LinearOpMode
+@Autonomous(name = "Test Cam", group = "Vuforia")
+public class f extends LinearOpMode
 {
     OpenGLMatrix lastLocation = null; // WARNING: VERY INACCURATE, USE ONLY TO ADJUST TO FIND IMAGE AGAIN! DO NOT BASE MAJOR MOVEMENTS OFF OF THIS!!
     double tX; // X value extracted from our the offset of the traget relative to the robot.
@@ -52,11 +53,12 @@ public class Key_Red_Angle extends LinearOpMode
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
-
-        robot.init(hardwareMap);
         waitForStart();
 
         relicTrackables.activate(); // Activate Vuforia
+
+        robot.init(hardwareMap);
+        waitForStart();
 
         while (opModeIsActive())
         {
@@ -81,33 +83,35 @@ public class Key_Red_Angle extends LinearOpMode
                 }
                 if (vuMark == RelicRecoveryVuMark.LEFT)
                 { // Test to see if Image is the "LEFT" image and display value.
-                    telemetry.addData("Key is", "Left");
-                    Red_Angle_Left go = new Red_Angle_Left();
+                    telemetry.addData("VuMark is", "Left");
+                    telemetry.addData("X =", tX);
+                    telemetry.addData("Y =", tY);
+                    telemetry.addData("Z =", tZ);
+                    Blue_Straight_Left go = new Blue_Straight_Left();
                     go.runOpMode();
                 } else if (vuMark == RelicRecoveryVuMark.RIGHT)
                 { // Test to see if Image is the "RIGHT" image and display values.
-                    telemetry.addData("Key is", "Right");
-                    Red_Angle_Right go = new Red_Angle_Right();
-                    go.runOpMode();
+                    telemetry.addData("VuMark is", "Right");
+                    telemetry.addData("X =", tX);
+                    telemetry.addData("Y =", tY);
+                    telemetry.addData("Z =", tZ);
                 } else if (vuMark == RelicRecoveryVuMark.CENTER)
                 { // Test to see if Image is the "CENTER" image and display values.
-                    telemetry.addData("Key is", "Center");
-                    Red_Angle_Center go = new Red_Angle_Center();
-                    go.runOpMode();
+                    telemetry.addData("VuMark is", "Center");
+                    telemetry.addData("X =", tX);
+                    telemetry.addData("Y =", tY);
+                    telemetry.addData("Z =", tZ);
+
                 }
             } else
             {
-                telemetry.addData("Key is", "not visible");
-                Blue_Angle_Center go = new Blue_Angle_Center();
-                go.runOpMode();
+                telemetry.addData("VuMark", "not visible");
             }
             telemetry.update();
         }
     }
-
     String format(OpenGLMatrix transformationMatrix)
     {
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
     }
-
 }

@@ -10,5 +10,10 @@ public class RegisterOpModes {
     @OpModeRegistrar
     public static void registerMyOpModes(OpModeManager manager) {
         manager.register("Dual Driver", Dual.class);
+
+        manager.register("Blue Straight", Key_Blue_Straight.class);
+        manager.register("Blue Angle", Key_Blue_Angle.class);
+        manager.register("Red Straight", Key_Red_Straight.class);
+        manager.register("Red Angle", Key_Red_Angle.class);
     }
 }

@@ -40,7 +40,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Blue Angle Left", group ="Concept")
-@Disabled
 public class Blue_Angle_Left extends LinearOpMode {
 
     /**
@@ -56,7 +55,6 @@ public class Blue_Angle_Left extends LinearOpMode {
         robot.colorSensor.enableLed(true);
 
         // Wait for the game to start (driver presses PLAY)
-        waitForStart();
         runtime.reset();
 
         robot.rightExtend.setPosition(0);

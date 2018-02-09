@@ -57,16 +57,12 @@ public class Blue_Straight_Left extends LinearOpMode {
         robot.colorSensor.enableLed(true);
 
         // Wait for the game to start (driver presses PLAY)
-        waitForStart();
         runtime.reset();
 
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
         robot.flicker.setPosition(0);
 
-        CryptoKey get=new CryptoKey();
-        //String pose = get.runOpMode();
-        get.runOpMode();
         glyph(2.5, 1);
         glyph(-1, 1.5);
         hold();
