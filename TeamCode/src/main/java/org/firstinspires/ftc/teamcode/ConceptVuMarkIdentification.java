@@ -46,27 +46,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-/**
- * This OpMode illustrates the basics of using the Vuforia engine to determine
- * the identity of Vuforia VuMarks encountered on the field. The code is structured as
- * a LinearOpMode. It shares much structure with {@link ConceptVuforiaNavigation}; we do not here
- * duplicate the core Vuforia documentation found there, but rather instead focus on the
- * differences between the use of Vuforia for navigation vs VuMark identification.
- *
- * @see ConceptVuforiaNavigation
- * @see VuforiaLocalizer
- * @see VuforiaTrackableDefaultListener
- * see  ftc_app/doc/tutorial/FTC_FieldCoordinateSystemDefinition.pdf
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
- *
- * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
- * is explained in {@link ConceptVuforiaNavigation}.
- */
 
-@Autonomous(name="Concept: VuMark Id", group ="Concept")
-@Disabled
+@Autonomous(name="Test Cam", group ="Concept")
+//@Disabled
 public class ConceptVuMarkIdentification extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
@@ -103,7 +85,7 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
          * Once you've obtained a license key, copy the string from the Vuforia web site
          * and paste it in to your code onthe next line, between the double quotes.
          */
-        parameters.vuforiaLicenseKey = "ATsODcD/////AAAAAVw2lR...d45oGpdljdOh5LuFB9nDNfckoxb8COxKSFX";
+        parameters.vuforiaLicenseKey = "Aafrxcb/////AAAAmU5O6jkL20EzvU3JOVtRlf80SeWDfT1t27nX2NwXJHP4MJrXd73E8rWt0KcoBm6XEM9IMmtVW8XCcSDjT5GgxAB7n57ePEwux95knT6fL4jvZYCQCppQ5ryzsn/H9IZKefU6PAJNMU+IvuXBBpKnRG/uQ2KzWZEqWPfwdan7aWGQ/SSbPjo7JTiIMDzfYD7UZfSCLF/V5+W4ThlY/fTBvjEPSDiIgNrJkP4wGm2yVwVRbYM6XGg67oiLQ3Gyk0XSeJon379NpcSd1Ff1vLcnEiXNKC41QM05EZ/h8K3WdKvSfSvePOmfNvV6waMq3Ht9Oxd6zgmCMwO0Ra5c5av/6sRz3ikjtYHeNGULYdKqSAIa";
 
         /*
          * We also indicate which camera on the RC that we wish to use.

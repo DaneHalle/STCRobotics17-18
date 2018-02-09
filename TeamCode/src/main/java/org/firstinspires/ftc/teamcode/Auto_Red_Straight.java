@@ -52,7 +52,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous
+@Autonomous(name="Red Straight", group ="Concept")
 public class Auto_Red_Straight extends LinearOpMode {
 
     /**
