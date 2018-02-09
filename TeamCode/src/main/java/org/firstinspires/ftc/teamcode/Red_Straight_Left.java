@@ -35,25 +35,11 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-/**
- * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
- * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
- * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
- * class is instantiated on the Robot Controller and executed.
- *
- * This particular OpMode just executes a basic Tank Drive Teleop for a PushBot
- * It includes all the skeletal structure that all linear OpModes contain.
- *
- * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
- */
-
-@Autonomous(name="Red Straight", group ="Concept")
-public class Auto_Red_Straight extends LinearOpMode {
+@Autonomous(name="Red Straight Left", group ="Concept")
+@Disabled
+public class Red_Straight_Left extends LinearOpMode {
 
     /**
      * Make some objects
@@ -62,7 +48,7 @@ public class Auto_Red_Straight extends LinearOpMode {
     HardwareMap_Mechanum robot = new HardwareMap_Mechanum();
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode()  {
 
         robot.init(hardwareMap);
 
@@ -103,9 +89,9 @@ public class Auto_Red_Straight extends LinearOpMode {
         }
         go(.5, 1.5);
         turn(-.5,.75);
-        go(.5,1);
+        go(.5,.75);
         turn(.5,1.5);
-        go(.5, 1.5);
+        go(.5, 1.25);
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
         glyph(.6, 1);
@@ -157,7 +143,7 @@ public class Auto_Red_Straight extends LinearOpMode {
             robot.backRight.setPower(0);
     }
 
-    private void strafeLeft(double speed, double time) throws InterruptedException {
+    private void strafeLeft(double speed, double time)  {
         double currentTime = getRuntime();
         do{
             robot.backLeft.setPower(-speed);
@@ -171,7 +157,7 @@ public class Auto_Red_Straight extends LinearOpMode {
             robot.frontRight.setPower(0);
     }
 
-    private void strafeRight(double speed, double distance) throws InterruptedException {
+    private void strafeRight(double speed, double distance)  {
         double currentTime = getRuntime();
         do{
             robot.backLeft.setPower(speed);
@@ -185,7 +171,7 @@ public class Auto_Red_Straight extends LinearOpMode {
             robot.backRight.setPower(0);
     }
 
-    private void glyph(double pow, double time) throws InterruptedException {
+    private void glyph(double pow, double time)  {
         double currentTime = getRuntime();
         do{
             robot.extender.setPower(pow);
@@ -193,7 +179,7 @@ public class Auto_Red_Straight extends LinearOpMode {
             robot.extender.setPower(0);
     }
 
-    private void shimmy(double pow, double time) throws InterruptedException {
+    private void shimmy(double pow, double time)  {
         double currentTime = getRuntime();
         do{
             strafeRight(pow, time/4);

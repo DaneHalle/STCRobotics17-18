@@ -49,7 +49,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Test Cam", group ="Concept")
 //@Disabled
-public class ConceptVuMarkIdentification extends LinearOpMode {
+public class CryptoKey extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
 
@@ -155,6 +155,7 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
             }
 
             telemetry.update();
+
         }
     }
 
