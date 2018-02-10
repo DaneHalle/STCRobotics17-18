@@ -94,19 +94,6 @@ public class Cam_Test extends LinearOpMode {
                 if (pose != null) {
                     VectorF trans = pose.getTranslation();
                     Orientation rot = Orientation.getOrientation(pose, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
-                    if(vuMark == RelicRecoveryVuMark.LEFT) {
-                        Blue_Straight_Left go=new Blue_Straight_Left();
-                        go.runOpMode();
-
-                    }else if(vuMark == RelicRecoveryVuMark.RIGHT){
-                        Blue_Straight_Right go=new Blue_Straight_Right();
-                        go.runOpMode();
-
-                    }else if(vuMark == RelicRecoveryVuMark.CENTER){
-                        Blue_Straight_Center go=new Blue_Straight_Center();
-                        go.runOpMode();
-
-                    }
                     // Extract the X, Y, and Z components of the offset of the target relative to the robot
                     double tX = trans.get(0);
                     double tY = trans.get(1);

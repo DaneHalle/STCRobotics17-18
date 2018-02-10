@@ -117,9 +117,9 @@ public class Dual extends LinearOpMode {
 
             //The claw o' Death
             if (gamepad2.right_bumper) {
-                robot.theClaw.setPosition(.944444);
-            } else {
                 robot.theClaw.setPosition(0);
+            } else {
+                robot.theClaw.setPosition(1);
             }
 
             //Linear gear arm!!!!!!!
@@ -138,15 +138,6 @@ public class Dual extends LinearOpMode {
             } else {
                 robot.leftExtend.setPosition(1);
                 robot.rightExtend.setPosition(0);
-            }
-
-            //height control of the Linear gear arm
-            if (gamepad2.a) {
-                robot.ben.setPower(1);
-            } else if (gamepad2.y) {
-                robot.ben.setPower(-1);
-            }else {
-                robot.ben.setPower(0);
             }
 
         idle();

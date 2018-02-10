@@ -55,6 +55,12 @@ public class Key_Red_Straight extends LinearOpMode
 
         robot.init(hardwareMap);
         waitForStart();
+        runtime.reset();
+
+        robot.rightExtend.setPosition(0);
+        robot.leftExtend.setPosition(1);
+        robot.flicker.setPosition(0);
+
 
         relicTrackables.activate(); // Activate Vuforia
 
@@ -82,24 +88,20 @@ public class Key_Red_Straight extends LinearOpMode
                 if (vuMark == RelicRecoveryVuMark.LEFT)
                 { // Test to see if Image is the "LEFT" image and display value.
                     telemetry.addData("Key is", "Left");
-                    Red_Straight_Left go = new Red_Straight_Left();
-                    go.runOpMode();
+                    goLeft();
                 } else if (vuMark == RelicRecoveryVuMark.RIGHT)
                 { // Test to see if Image is the "RIGHT" image and display values.
                     telemetry.addData("Key is", "Right");
-                    Red_Straight_Right go = new Red_Straight_Right();
-                    go.runOpMode();
+                    goRight();
                 } else if (vuMark == RelicRecoveryVuMark.CENTER)
                 { // Test to see if Image is the "CENTER" image and display values.
                     telemetry.addData("Key is", "Center");
-                    Red_Straight_Center go = new Red_Straight_Center();
-                    go.runOpMode();
+                    goCenter();
                 }
             } else
             {
                 telemetry.addData("Key is", "not visible");
-                Red_Angle_Center go = new Red_Angle_Center();
-                go.runOpMode();
+                goCenter();
             }
             telemetry.update();
         }
@@ -110,4 +112,202 @@ public class Key_Red_Straight extends LinearOpMode
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
     }
 
+    private void goCenter() {
+        glyph(2.5, 1);
+        glyph(-1, 1.5);
+        hold();
+        robot.rightExtend.setPosition(1);
+        robot.leftExtend.setPosition(0);
+        glyph(1, 1);
+        robot.flicker.setPosition(1);
+
+        //detect ball color and flick correct ball
+        telemetry.addData("Red", robot.colorSensor.red());
+        telemetry.addData("Blue", robot.colorSensor.blue());
+        telemetry.update();
+
+        doNothing();
+        if (robot.colorSensor.red() < robot.colorSensor.blue()) {
+            go(-.5,1);
+            robot.flicker.setPosition(0);
+            hold();
+            go(.5,1);
+        } else {
+            go(.5,1);
+            robot.flicker.setPosition(0);
+            hold();
+            go(-.5,1);
+        }
+        go(.5, 1.5);
+        turn(-.5,.75);
+        go(.5,1);
+        turn(.5,1.5);
+        go(.5, 1.5);
+        robot.rightExtend.setPosition(0);
+        robot.leftExtend.setPosition(1);
+        glyph(.6, 1);
+        go(-.25, .5);
+    }
+
+    private void goRight(){
+        glyph(2.5, 1);
+        glyph(-1, 1.5);
+        hold();
+        robot.rightExtend.setPosition(1);
+        robot.leftExtend.setPosition(0);
+        glyph(1, 1);
+        robot.flicker.setPosition(1);
+
+        //detect ball color and flick correct ball
+        telemetry.addData("Red", robot.colorSensor.red());
+        telemetry.addData("Blue", robot.colorSensor.blue());
+        telemetry.update();
+
+        doNothing();
+        if (robot.colorSensor.red() < robot.colorSensor.blue()) {
+            go(-.5,1);
+            robot.flicker.setPosition(0);
+            hold();
+            go(.5,1);
+        } else {
+            go(.5,1);
+            robot.flicker.setPosition(0);
+            hold();
+            go(-.5,1);
+        }
+        go(.5, 1.5);
+        turn(-.5,.75);
+        go(.5,1.25);
+        turn(.5,1.5);
+        go(.5, 1.75);
+        robot.rightExtend.setPosition(0);
+        robot.leftExtend.setPosition(1);
+        glyph(.6, 1);
+        go(-.25, .5);
+    }
+
+    private void goLeft(){
+        glyph(2.5, 1);
+        glyph(-1, 1.5);
+        hold();
+        robot.rightExtend.setPosition(1);
+        robot.leftExtend.setPosition(0);
+        glyph(1, 1);
+        robot.flicker.setPosition(1);
+
+        //detect ball color and flick correct ball
+        telemetry.addData("Red", robot.colorSensor.red());
+        telemetry.addData("Blue", robot.colorSensor.blue());
+        telemetry.update();
+
+        doNothing();
+        if (robot.colorSensor.red() < robot.colorSensor.blue()) {
+            go(-.5,1);
+            robot.flicker.setPosition(0);
+            hold();
+            go(.5,1);
+        } else {
+            go(.5,1);
+            robot.flicker.setPosition(0);
+            hold();
+            go(-.5,1);
+        }
+        go(.5, 1.5);
+        turn(-.5,.75);
+        go(.5,.75);
+        turn(.5,1.5);
+        go(.5, 1.25);
+        robot.rightExtend.setPosition(0);
+        robot.leftExtend.setPosition(1);
+        glyph(.6, 1);
+        go(-.25, .5);
+    }
+
+    private void doNothing() {
+        final double x = getRuntime();
+        while (getRuntime()<=x+2) {
+            //do nothing
+        }
+    }
+
+    private void hold() {
+        final double x=getRuntime()+.5;
+        while(getRuntime()<=x){
+            //hold
+        }
+    }
+
+    private void turn(double speed, double secs) {
+        double currentTime = getRuntime();
+        do{
+            robot.backLeft.setPower(speed);
+            robot.backRight.setPower(-speed);
+            robot.frontLeft.setPower(speed);
+            robot.frontRight.setPower(-speed);
+        }while(getRuntime()<=currentTime+secs);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
+    }
+
+    private void go(double speed, double secs) {
+        double currentTime = getRuntime();
+        do {
+            robot.frontLeft.setPower(speed);
+            robot.frontRight.setPower(speed);
+            robot.backLeft.setPower(speed);
+            robot.backRight.setPower(speed);
+        }while(getRuntime()<=currentTime+secs);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
+    }
+
+    private void strafeLeft(double speed, double time)  {
+        double currentTime = getRuntime();
+        do{
+            robot.backLeft.setPower(-speed);
+            robot.backRight.setPower(speed);
+            robot.frontLeft.setPower(speed);
+            robot.frontRight.setPower(-speed);
+        }while(getRuntime()<=currentTime+time);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
+    }
+
+    private void strafeRight(double speed, double distance)  {
+        double currentTime = getRuntime();
+        do{
+            robot.backLeft.setPower(speed);
+            robot.backRight.setPower(-speed);
+            robot.frontLeft.setPower(-speed);
+            robot.frontRight.setPower(speed);
+        }while(getRuntime()<=currentTime+distance);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
+    }
+
+    private void glyph(double pow, double time)  {
+        double currentTime = getRuntime();
+        do{
+            robot.extender.setPower(pow);
+        }while(getRuntime()<=currentTime+time);
+        robot.extender.setPower(0);
+    }
+
+    private void shimmy(double pow, double time)  {
+        double currentTime = getRuntime();
+        do{
+            strafeRight(pow, time/4);
+            go(pow, time/4);
+            strafeLeft(pow, time/4);
+            go(pow, time/4);
+        }while(getRuntime()<=currentTime+time);
+    }
 }
